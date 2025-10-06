@@ -1,0 +1,19 @@
+
+Call:
+lm(formula = cres_pib ~ índice, data = dados)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.46934 -0.03822 -0.00489  0.03234  0.78557 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.019917   0.004115   4.840 1.38e-06 ***
+índice      0.063312   0.019374   3.268   0.0011 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.07636 on 2392 degrees of freedom
+Multiple R-squared:  0.004445,	Adjusted R-squared:  0.004028 
+F-statistic: 10.68 on 1 and 2392 DF,  p-value: 0.001099
+

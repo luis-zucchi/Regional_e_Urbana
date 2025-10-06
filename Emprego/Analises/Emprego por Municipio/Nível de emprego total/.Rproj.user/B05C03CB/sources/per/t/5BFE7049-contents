@@ -1,0 +1,107 @@
+# Crie uma lista vazia para armazenar os data frames
+lista_de_dataframes <- list()
+
+# CRIACAO DE DATA FRAMES
+for (ano in 1985:2001) {
+  # Construa o caminho completo do arquivo CSV
+  caminho_arquivo <- file.path("D:/Pessoal/Luis_Souza/Emprego por Municipio/Nível de emprego total/", paste0("estoque_", ano, ".csv"))
+  
+  df <- read.csv(caminho_arquivo, header = TRUE, sep=";")
+  
+
+    # Adicione o data frame a lista
+  lista_de_dataframes[[paste0("df_", ano)]] <- df
+}
+
+
+
+View(lista_de_dataframes[["df_1985"]])
+View(lista_de_dataframes[["df_1987"]])
+View(lista_de_dataframes[["df_1989"]])
+View(lista_de_dataframes[["df_1990"]])
+View(lista_de_dataframes[["df_1995"]])
+
+
+View(lista_de_dataframes[["df_1986"]])
+View(lista_de_dataframes[["df_1988"]])
+View(lista_de_dataframes[["df_1991"]])
+View(lista_de_dataframes[["df_1996"]])
+
+
+
+# REMOVENDO LINHAS EXTRAS
+lista_de_dataframes2 <- lista_de_dataframes
+
+for (i in c(1985, 1987,1989,1990,1995)) {
+  docu <- paste0("df_", i)  
+  df <- lista_de_dataframes[[docu]]  
+  df <- df[-5185,]
+  df <- df[-4947,]
+  df <- df[-4627,]
+  df <- df[-4525,]
+  df <- df[-229,]
+  rownames(df) <- NULL
+  lista_de_dataframes2[[docu]] <- df
+  
+}
+
+
+ 
+ # JUNTANDO DATA FRAMES
+
+estoque_total <- lista_de_dataframes2[["df_1985"]][,1]
+
+for (i in 1985:2001) {
+  docu <- paste0("df_", i)
+  df <- lista_de_dataframes[[docu]]  
+  estoque_total <- cbind(estoque_total, df[1:5653, 2])
+}
+
+estoque_total <- estoque_total[,-1]
+
+
+
+# REMOVENDO IGNORADOS
+
+indices_para_remover <- c(5653, 5651, 5344, 5202, 5123, 4625, 4331, 3931, 3285, 3192, 3113, 2259, 1841, 1765, 1662, 1476, 1252, 1084, 899, 674, 456, 316, 299, 155, 139, 76, 53)
+
+estoque_total <- estoque_total[-indices_para_remover, ]
+
+rownames(estoque_total) <- NULL
+
+#renomeando colunas
+
+
+
+
+#02 a 21
+estoque_02 <- read.csv("D:/Pessoal/Luis_Souza/Emprego por Municipio/N?vel de emprego total/estoque_02.csv", sep=";")
+
+estoque_02 <- estoque_02[-5162,]
+estoque_02 <- estoque_02[-4925,]
+estoque_02 <- estoque_02[-4606,]
+estoque_02 <- estoque_02[-4504,]
+estoque_02 <- estoque_02[-225,]
+rownames(estoque_02) <- NULL
+
+estoque_02 <- estoque_02[-5627,]
+
+
+
+
+
+estoque_tudo <- cbind(estoque_total, estoque_02)
+
+
+
+
+# EXPORTANDO estoque_total
+
+install.packages("writexl")
+library(writexl)
+
+arquivo_excel <- "estoque.xlsx"
+
+write_xlsx(estoque_tudo, path = arquivo_excel)
+
+getwd()

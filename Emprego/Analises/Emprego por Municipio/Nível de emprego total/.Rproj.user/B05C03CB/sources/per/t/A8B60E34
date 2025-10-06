@@ -1,0 +1,28 @@
+{
+    "id": "A8B60E34",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1695150022936.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "id": "3a5f7f6e18644656bda6a9bc1f7a3083",
+        "name": "lista_de_dataframes2",
+        "title": "lista_de_dataframes2",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2385275790240,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1695150022936,
+    "read_only": false,
+    "read_only_alternatives": []
+}
